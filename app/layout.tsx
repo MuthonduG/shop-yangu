@@ -21,11 +21,20 @@ export default function RootLayout({
       <body className="antialiased">
         <Navbar toggleSidenav={toggleSidenav} />
         <div className="flex h-screen">
-          {isSideNavVisible && <Sidenav />}
-          <main
-            className={`transition-all duration-300 ${
-              isSideNavVisible ? "w-full": "w-[calc(100%-250px)]"
+          {/* Sidenav - conditionally rendered */}
+          <div
+            className={`fixed top-0 left-0 z-10 transition-all duration-300 ${
+              isSideNavVisible ? "w-64" : "w-0"
             }`}
+          >
+            {isSideNavVisible && <Sidenav />}
+          </div>
+
+          {/* Main content area */}
+          <main
+            className={`transition-all duration-300 w-full h-full ml-0 ${
+              isSideNavVisible ? "pl-72" : "pl-0"
+            }`} // Adjust main content width based on sidenav visibility
           >
             {children}
           </main>
