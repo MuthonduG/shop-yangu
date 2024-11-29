@@ -20,8 +20,16 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         <Navbar toggleSidenav={toggleSidenav} />
-        {isSideNavVisible && <Sidenav />}
-        {children}
+        <div className="flex h-screen">
+          {isSideNavVisible && <Sidenav />}
+          <main
+            className={`transition-all duration-300 ${
+              isSideNavVisible ? "w-full": "w-[calc(100%-250px)]"
+            }`}
+          >
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   );
