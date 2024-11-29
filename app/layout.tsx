@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         <Navbar toggleSidenav={toggleSidenav} />
-        <div className="flex h-screen">
+        <div className="flex h-screen overflow-scroll no-scrollbar">
           {/* Sidenav - conditionally rendered */}
           <div
             className={`fixed top-0 left-0 z-10 transition-all duration-300 ${
@@ -32,7 +32,7 @@ export default function RootLayout({
 
           {/* Main content area */}
           <main
-            className={`transition-all duration-300 w-full h-full ml-0 ${
+            className={`transition-all duration-300 w-full h-screen ml-0 ${
               isSideNavVisible ? "pl-72" : "pl-0"
             }`} // Adjust main content width based on sidenav visibility
           >
