@@ -1,13 +1,16 @@
 import React from "react";
 import Header from "@/components/Header";
+import Hero from "@/components/Hero";
 
 const Dashboard = () => {
   return (
-    <section className="w-full h-full flex flex-col mt-32"> {/* Added pt-20 to give space for the navbar */}
+    <section className="w-full h-full flex flex-col mt-32">
+      <div className="">
+        <Hero/>
+      </div>
       <div className="">
         <Header />
       </div>
-      {/* More content can go here */}
     </section>
   );
 };
