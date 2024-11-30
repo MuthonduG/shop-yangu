@@ -1,10 +1,16 @@
 {
   "shops": [
     {
-      "id": "1",
-      "name": "Cool shop",
-      "description": "A cool shop selling cool stuff",
-      "logo": "https://img.freepik.com/premium-vector/this-cartoon-clipart-shows-surfboard-summer-illustration_576561-10940.jpg?w=360"
+      "id": "1732968517883",
+      "name": "Crystal Hotel",
+      "description": "Best Eatery in town",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyLEv9CsCH98v2cs6FFEoPj5U9WwGPpE4RJg&s"
+    },
+    {
+      "id": "1732968558371",
+      "name": "Fashionista",
+      "description": "women's fashion",
+      "logo": "https://www.onlinelogomaker.com/blog/wp-content/uploads/2017/09/fashion-logo-design.jpg"
     }
   ],
   "products": [

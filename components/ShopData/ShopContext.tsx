@@ -3,7 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 // Define the types
 interface Shop {
-  id: number;
+  id: string; // Updated to string
   name: string;
   description: string;
   logo: string;
@@ -14,8 +14,8 @@ interface ShopContextType {
   loading: boolean;
   error: string | null;
   createShop: (newShop: Shop) => void;
-  updateShop: (id: number, updatedShop: Partial<Shop>) => void;
-  deleteShop: (id: number) => void;
+  updateShop: (id: string, updatedShop: Partial<Shop>) => void;
+  deleteShop: (id: string) => void;
 }
 
 // Create context
@@ -23,7 +23,7 @@ const ShopContext = createContext<ShopContextType | undefined>(undefined);
 
 // Provider component
 export const ShopProvider = ({ children }: { children: React.ReactNode }) => {
-  const [shopData, setShopData] = useState<Shop[]>([]);  // Initialize as empty
+  const [shopData, setShopData] = useState<Shop[]>([]); // Initialize as empty
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -51,12 +51,13 @@ export const ShopProvider = ({ children }: { children: React.ReactNode }) => {
   const createShop = async (newShop: Shop) => {
     setLoading(true);
     try {
+      const shopWithStringId = { ...newShop, id: newShop.id.toString() }; // Ensure ID is a string
       const response = await fetch("http://localhost:5000/shops", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newShop),
+        body: JSON.stringify(shopWithStringId),
       });
       if (!response.ok) {
         throw new Error("Failed to create shop");
@@ -71,7 +72,7 @@ export const ShopProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   // Update an existing shop by sending PUT request
-  const updateShop = async (id: number, updatedShop: Partial<Shop>) => {
+  const updateShop = async (id: string, updatedShop: Partial<Shop>) => {
     setLoading(true);
     try {
       const response = await fetch(`http://localhost:5000/shops/${id}`, {
@@ -79,7 +80,7 @@ export const ShopProvider = ({ children }: { children: React.ReactNode }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(updatedShop),
+        body: JSON.stringify({ ...updatedShop, id: id.toString() }), // Ensure ID is a string
       });
       if (!response.ok) {
         throw new Error("Failed to update shop");
@@ -96,7 +97,7 @@ export const ShopProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   // Delete a shop by sending DELETE request
-  const deleteShop = async (id: number) => {
+  const deleteShop = async (id: string) => {
     setLoading(true);
     try {
       const response = await fetch(`http://localhost:5000/shops/${id}`, {
