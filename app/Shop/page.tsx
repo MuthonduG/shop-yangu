@@ -22,8 +22,8 @@ const ShopPage = () => {
   // Handle edit action
   const handleEdit = (shop: Shop) => {
     setCurrentShop(shop);
-    setFormData(shop); // Pre-fill the form with the shop data
-    setIsModalOpen(true); // Open the modal
+    setFormData(shop); 
+    setIsModalOpen(true);
   };
 
   // Handle delete action
@@ -45,8 +45,8 @@ const ShopPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (formData && currentShop) {
-      updateShop(currentShop.id, formData); // Update the shop data
-      setIsModalOpen(false); // Close the modal
+      updateShop(currentShop.id, formData); 
+      setIsModalOpen(false); 
     }
   };
 
@@ -77,7 +77,7 @@ const ShopPage = () => {
           </button>
           {/* Delete Button */}
           <button
-            onClick={() => handleDelete(row)}  // Call handleDelete on click
+            onClick={() => handleDelete(row)}  
             className="text-red-500 hover:text-red-700"
             title="Delete"
           >
@@ -98,9 +98,9 @@ const ShopPage = () => {
 
   return (
     <section className="w-full h-screen flex flex-col mt-32 px-8">
-      <div className="flex">
-        <h1 className="text-2xl font-semibold mb-6">Shop List</h1>
-        <button type="submit"> Create </button>
+      <div className="flex justify-between w-full p-2 items-center">
+        <h1 className="text-2xl font-semibold mb-6 mt-2">Shop List</h1>
+        <button type="submit" className="p-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-gray-200 font-semibold"> create new shop</button>
       </div>
       <Tablecomponent columns={columns} data={shopData} className="mt-4" />
 
