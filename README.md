@@ -1,37 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## SHOP YANGU ADMIN PANEL ##
 
-## Getting Started
+## Features ##
+Dynamic Product Management:
+1. Create, edit, and delete products via modals.
+2. Filter products by price range and stock level.
+3. Search for products by name.
 
-First, run the development server:
+Responsive Design:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Fully responsive user interface using Tailwind CSS.
+Mock API:
+- A mock JSON server is used for data handling during development and testing.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Run the app localy ##
+1. Git clone the repo - https://github.com/MuthonduG/shop-yangu.git
+2. Run npm install --legacy-peer-deps to install all packages or dependencies
+3. To start the app run: 
+    npm run dev
+4. To start the mock json api server run  
+    json-server db.json --port 5000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## API Routes ##
+The mock JSON server will be accessible at:
+1. http://localhost:5000/products
+2. http://localhost:5000/shops
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# shop-yangu
