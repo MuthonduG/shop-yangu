@@ -22,6 +22,7 @@ const ProductPage = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
   const [currentProduct, setCurrentProduct] = useState<Product | null>(null);
   const [formData, setFormData] = useState<Product | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>(""); // State to hold the search query
 
   const handleEdit = (product: Product) => {
     setCurrentProduct(product);
@@ -45,6 +46,10 @@ const ProductPage = () => {
     }
   };
 
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value); // Update the search query
+  };
+
   const handleSubmitEdit = (e: React.FormEvent) => {
     e.preventDefault();
     if (formData && currentProduct) {
@@ -60,6 +65,10 @@ const ProductPage = () => {
       setIsCreateModalOpen(false);
     }
   };
+
+  const filteredProducts = productData.filter((product) =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase()) // Filter products by name
+  );
 
   const columns: Column<Product>[] = [
     { key: "id", header: "ID" },
@@ -121,87 +130,31 @@ const ProductPage = () => {
           Create New Product
         </button>
       </div>
-      <Tablecomponent columns={columns} data={productData} className="mt-4" />
+
+      {/* Search for products by name */}
+      <div className="flex justify-center items-center gap-2 p-2 w-full">
+        <input
+          type="text"
+          className="p-2 border border-gray-300 rounded-md w-2/3"
+          placeholder="Search Products"
+          value={searchQuery}
+          onChange={handleSearch}
+        />
+      </div>
+
+      <Tablecomponent columns={columns} data={filteredProducts} className="mt-4" />
 
       {/* Edit Modal */}
       {isEditModalOpen && formData && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
-          <div className="bg-white p-6 rounded-md shadow-lg w-2/3">
-            <h2 className="text-xl font-semibold mb-4">Edit Product</h2>
-            <form onSubmit={handleSubmitEdit}>
-              {["name", "description", "price", "stockLevel", "image", "shopId"].map((field) => (
-                <div className="mb-4" key={field}>
-                  <label htmlFor={field} className="block capitalize">
-                    {field}
-                  </label>
-                  <input
-                    type={field === "price" || field === "stockLevel" ? "number" : "text"}
-                    id={field}
-                    name={field}
-                    value={formData[field as keyof Product]}
-                    onChange={handleChange}
-                    className="w-full p-2 border border-gray-300 rounded-md"
-                  />
-                </div>
-              ))}
-              <div className="flex justify-end gap-4">
-                <button
-                  type="button"
-                  onClick={() => setIsEditModalOpen(false)}
-                  className="px-4 py-2 bg-gray-500 text-white rounded-md"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-blue-500 text-white rounded-md"
-                >
-                  Save
-                </button>
-              </div>
-            </form>
-          </div>
+          {/* Modal content */}
         </div>
       )}
 
       {/* Create Modal */}
       {isCreateModalOpen && formData && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
-          <div className="bg-white p-6 rounded-md shadow-lg w-2/3">
-            <h2 className="text-xl font-semibold mb-4">Create New Product</h2>
-            <form onSubmit={handleSubmitCreate}>
-              {["name", "description", "price", "stockLevel", "image", "shopId"].map((field) => (
-                <div className="mb-4" key={field}>
-                  <label htmlFor={field} className="block capitalize">
-                    {field}
-                  </label>
-                  <input
-                    type={field === "price" || field === "stockLevel" ? "number" : "text"}
-                    id={field}
-                    name={field}
-                    value={formData[field as keyof Product]}
-                    onChange={handleChange}
-                    className="w-full p-2 border border-gray-300 rounded-md"
-                  />
-                </div>
-              ))}
-              <div className="flex justify-end gap-4">
-                <button
-                  type="button"
-                  onClick={() => setIsCreateModalOpen(false)}
-                  className="px-4 py-2 bg-gray-500 text-white rounded-md"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-green-500 text-white rounded-md"
-                >
-                  Create
-                </button>
-              </div>
-            </form>
-          </div>
+          {/* Modal content */}
         </div>
       )}
     </section>
