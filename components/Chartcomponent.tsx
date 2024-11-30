@@ -1,13 +1,16 @@
 "use client";
 import React, { useEffect, useRef } from "react";
+import { useProductContext } from "@/components/ProductData/ProductContext"; // Assuming you have this context for product data
 import Chart, { ChartData, ChartOptions } from "chart.js/auto";
 
 const ChartComponent: React.FC = () => {
   const chartRef = useRef<HTMLCanvasElement | null>(null); // Reference to the canvas element
   const chartInstanceRef = useRef<Chart<"pie", number[], string> | null>(null); // Reference to the Chart instance
 
+  const { productData } = useProductContext(); // Getting product data from context
+
   useEffect(() => {
-    if (!chartRef.current) return; // Ensure the canvas element exists
+    if (!chartRef.current || !productData || productData.length === 0) return; // Ensure the canvas element and product data are available
 
     const ctx = chartRef.current.getContext("2d");
     if (!ctx) return; // Ensure the 2D context is available
@@ -17,13 +20,24 @@ const ChartComponent: React.FC = () => {
       chartInstanceRef.current.destroy();
     }
 
+    // Process product data to count the number of products per shop
+    const shopProductCount: { [key: string]: number } = {};
+
+    productData.forEach((product) => {
+      shopProductCount[product.shopId] = (shopProductCount[product.shopId] || 0) + 1;
+    });
+
+    // Create the chart labels and data
+    const labels = Object.keys(shopProductCount); // Shops (based on shopId)
+    const dataValues = Object.values(shopProductCount); // Number of products for each shop
+
     // Define the chart data
-    const data: ChartData<"pie", number[], string> = {
-      labels: ["shirts", "pants", "shoes", "utencils", "toys", "furniture"],
+    const chartData: ChartData<"pie", number[], string> = {
+      labels,
       datasets: [
         {
-          label: "Dataset",
-          data: [12, 19, 3, 5, 2, 3], // Data points
+          label: "Products per Shop",
+          data: dataValues, // Data points representing the number of products per shop
           backgroundColor: [
             "rgba(255, 99, 132, 0.6)",
             "rgba(54, 162, 235, 0.6)",
@@ -61,7 +75,7 @@ const ChartComponent: React.FC = () => {
     // Create the Chart instance
     chartInstanceRef.current = new Chart(ctx, {
       type: "pie",
-      data,
+      data: chartData,
       options,
     });
 
@@ -72,7 +86,7 @@ const ChartComponent: React.FC = () => {
         chartInstanceRef.current = null; // Reset the reference
       }
     };
-  }, []); // Run only once when the component mounts
+  }, [productData]); // Re-run whenever the product data changes
 
   return (
     <div style={{ width: "400px", height: "400px" }}>

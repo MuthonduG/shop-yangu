@@ -47,7 +47,8 @@ const ProductPage = () => {
   };
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value); // Update the search query
+    // Update the search query
+    setSearchQuery(e.target.value); 
   };
 
   const handleSubmitEdit = (e: React.FormEvent) => {
@@ -61,7 +62,8 @@ const ProductPage = () => {
   const handleSubmitCreate = (e: React.FormEvent) => {
     e.preventDefault();
     if (formData) {
-      createProduct({ ...formData, id: `${Date.now()}` }); // Generate a unique string ID
+      // Generate a unique string ID
+      createProduct({ ...formData, id: `${Date.now()}` }); 
       setIsCreateModalOpen(false);
     }
   };
