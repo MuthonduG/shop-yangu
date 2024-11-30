@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Tablecomponent from "@/components/Tablecomponent";
+import Tablecomponent, { Column } from "@/components/Tablecomponent";
 import { useShopContext } from "@/components/ShopData/ShopContext";
 import { FaTrashCan } from "react-icons/fa6";
 import { CiEdit } from "react-icons/ci";
@@ -55,21 +55,22 @@ const ShopPage = () => {
     }
   };
 
-  const columns = [
+  const columns: Column<Shop>[] = [
     { key: "id", header: "ID" },
     { key: "name", header: "Name" },
     { key: "description", header: "Description" },
     {
       key: "logo",
       header: "Logo",
-      render: (value: string, row: Shop) => (
-        <img src={value} alt="Shop Logo" className="w-16 h-16 object-cover" />
-      ),
+      render: (value, row) =>
+        value ? (
+          <img src={value as string} alt={`${row.name} Logo`} className="w-16 h-16 object-cover" />
+        ) : null,
     },
     {
       key: "actions",
       header: "Actions",
-      render: (_: string, row: Shop) => (
+      render: (_, row) => (
         <div className="flex gap-4">
           <button
             onClick={() => handleEdit(row)}
@@ -121,7 +122,9 @@ const ShopPage = () => {
             <h2 className="text-xl font-semibold mb-4">Edit Shop</h2>
             <form onSubmit={handleSubmitEdit}>
               <div className="mb-4">
-                <label htmlFor="name" className="block">Name</label>
+                <label htmlFor="name" className="block">
+                  Name
+                </label>
                 <input
                   type="text"
                   id="name"
@@ -132,7 +135,9 @@ const ShopPage = () => {
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="description" className="block">Description</label>
+                <label htmlFor="description" className="block">
+                  Description
+                </label>
                 <input
                   type="text"
                   id="description"
@@ -143,7 +148,9 @@ const ShopPage = () => {
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="logo" className="block">Logo URL</label>
+                <label htmlFor="logo" className="block">
+                  Logo URL
+                </label>
                 <input
                   type="text"
                   id="logo"
@@ -180,7 +187,9 @@ const ShopPage = () => {
             <h2 className="text-xl font-semibold mb-4">Create New Shop</h2>
             <form onSubmit={handleSubmitCreate}>
               <div className="mb-4">
-                <label htmlFor="name" className="block">Name</label>
+                <label htmlFor="name" className="block">
+                  Name
+                </label>
                 <input
                   type="text"
                   id="name"
@@ -191,7 +200,9 @@ const ShopPage = () => {
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="description" className="block">Description</label>
+                <label htmlFor="description" className="block">
+                  Description
+                </label>
                 <input
                   type="text"
                   id="description"
@@ -202,7 +213,9 @@ const ShopPage = () => {
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="logo" className="block">Logo URL</label>
+                <label htmlFor="logo" className="block">
+                  Logo URL
+                </label>
                 <input
                   type="text"
                   id="logo"
@@ -222,7 +235,7 @@ const ShopPage = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-blue-500 text-white rounded-md"
+                  className="px-4 py-2 bg-green-500 text-white rounded-md"
                 >
                   Create
                 </button>
