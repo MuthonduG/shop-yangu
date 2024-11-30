@@ -1,15 +1,15 @@
 import React from "react";
 
-type Column<T> = {
-  key: keyof T; // The field in the data object
-  header: string; // Header label for the column
-  render?: (value: T[keyof T], row: T) => React.ReactNode; // Optional custom renderer
+export type Column<T> = {
+  key: keyof T | "actions"; // Allow "actions" for custom operations
+  header: string; // Column header
+  render?: (value: T[keyof T] | undefined, row: T) => React.ReactNode; // Custom render logic
 };
 
 type TableProps<T> = {
-  columns: Column<T>[]; // Array of column definitions
-  data: T[]; // Array of data rows
-  className?: string; // Optional additional styles
+  columns: Column<T>[]; // Column definitions
+  data: T[]; // Table data
+  className?: string; // Optional additional CSS
 };
 
 const Tablecomponent = <T,>({ columns, data, className }: TableProps<T>): JSX.Element => {
@@ -38,7 +38,11 @@ const Tablecomponent = <T,>({ columns, data, className }: TableProps<T>): JSX.El
                   key={String(col.key)}
                   className="px-4 py-2 border-b border-gray-200 text-sm text-gray-600"
                 >
-                  {col.render
+                  {col.key === "actions" // Handle the actions column separately
+                    ? col.render
+                      ? col.render(undefined, row)
+                      : null
+                    : col.render
                     ? col.render(row[col.key], row)
                     : String(row[col.key])}
                 </td>

@@ -3,6 +3,8 @@
 import React from "react";
 import Tablecomponent from "@/components/Tablecomponent";
 import { useShopContext } from "@/components/ShopData/ShopContext";
+import { FaTrashCan } from "react-icons/fa6";
+import { CiEdit } from "react-icons/ci";
 
 type Shop = {
   id: number;
@@ -14,16 +16,52 @@ type Shop = {
 const ShopPage = () => {
   const { shopData, loading, error } = useShopContext();
 
-  // Define table columns
-  const columns: { key: keyof Shop; header: string; render?: (value: string | number, row: Shop) => React.ReactNode }[] = [
+  // Handle edit action
+  const handleEdit = (shop: Shop) => {
+    console.log("Edit clicked for:", shop);
+    // Implement edit logic, for example, redirect to an edit page or open a modal
+  };
+
+  // Handle delete action
+  const handleDelete = (shop: Shop) => {
+    console.log("Delete clicked for:", shop);
+    // Implement delete logic, for example, call the delete function from context
+  };
+
+  // Define table columns, including actions column
+  const columns: { key: keyof Shop | "actions"; header: string; render?: (value: string | number | undefined, row: Shop) => React.ReactNode }[] = [
     { key: "id", header: "ID" },
     { key: "name", header: "Name" },
     { key: "description", header: "Description" },
     {
       key: "logo",
       header: "Logo",
-      render: (value: string | number, row: Shop) => (
+      render: (value: string | number | undefined, row: Shop) => (
         <img src={value as string} alt="Shop Logo" className="w-16 h-16 object-cover" />
+      ),
+    },
+    {
+      key: "actions", // Define actions column
+      header: "Actions",
+      render: (_, row: Shop) => (
+        <div className="flex gap-4">
+          {/* Edit Button */}
+          <button
+            onClick={() => handleEdit(row)}
+            className="text-blue-500 hover:text-blue-700"
+            title="Edit"
+          >
+            <CiEdit size={20} />
+          </button>
+          {/* Delete Button */}
+          <button
+            onClick={() => handleDelete(row)}
+            className="text-red-500 hover:text-red-700"
+            title="Delete"
+          >
+            <FaTrashCan size={20} />
+          </button>
+        </div>
       ),
     },
   ];
