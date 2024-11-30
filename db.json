@@ -2,9 +2,9 @@
   "shops": [
     {
       "id": "1",
-      "name": "Shop One",
+      "name": "Cool shop",
       "description": "A cool shop selling cool stuff",
-      "logo": "https://via.placeholder.com/150"
+      "logo": "https://img.freepik.com/premium-vector/this-cartoon-clipart-shows-surfboard-summer-illustration_576561-10940.jpg?w=360"
     }
   ],
   "products": [
