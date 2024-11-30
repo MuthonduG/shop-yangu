@@ -13,7 +13,7 @@ type Product = {
   stockLevel: number;
   description: string;
   image: string;
-  shopId: string; // Ensure shopId is included
+  shopId: string;
 };
 
 const ProductPage = () => {
@@ -22,7 +22,13 @@ const ProductPage = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
   const [currentProduct, setCurrentProduct] = useState<Product | null>(null);
   const [formData, setFormData] = useState<Product | null>(null);
-  const [searchQuery, setSearchQuery] = useState<string>(""); // State to hold the search query
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  // Filter states
+  const [minPrice, setMinPrice] = useState<number | "">("");
+  const [maxPrice, setMaxPrice] = useState<number | "">("");
+  const [minStockLevel, setMinStockLevel] = useState<number | "">("");
+  const [maxStockLevel, setMaxStockLevel] = useState<number | "">("");
 
   const handleEdit = (product: Product) => {
     setCurrentProduct(product);
@@ -47,8 +53,7 @@ const ProductPage = () => {
   };
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Update the search query
-    setSearchQuery(e.target.value); 
+    setSearchQuery(e.target.value);
   };
 
   const handleSubmitEdit = (e: React.FormEvent) => {
@@ -62,15 +67,27 @@ const ProductPage = () => {
   const handleSubmitCreate = (e: React.FormEvent) => {
     e.preventDefault();
     if (formData) {
-      // Generate a unique string ID
-      createProduct({ ...formData, id: `${Date.now()}` }); 
+      createProduct({ ...formData, id: `${Date.now()}` });
       setIsCreateModalOpen(false);
     }
   };
 
-  const filteredProducts = productData.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase()) // Filter products by name
-  );
+  // Filter products based on search, price, and stock level
+  const filteredProducts = productData.filter((product) => {
+    const matchesSearchQuery = product.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesMinPrice = minPrice ? product.price >= minPrice : true;
+    const matchesMaxPrice = maxPrice ? product.price <= maxPrice : true;
+    const matchesMinStock = minStockLevel ? product.stockLevel >= minStockLevel : true;
+    const matchesMaxStock = maxStockLevel ? product.stockLevel <= maxStockLevel : true;
+
+    return (
+      matchesSearchQuery &&
+      matchesMinPrice &&
+      matchesMaxPrice &&
+      matchesMinStock &&
+      matchesMaxStock
+    );
+  });
 
   const columns: Column<Product>[] = [
     { key: "id", header: "ID" },
@@ -110,13 +127,8 @@ const ProductPage = () => {
     },
   ];
 
-  if (loading) {
-    return <p className="text-center text-gray-600">Loading...</p>;
-  }
-
-  if (error) {
-    return <p className="text-center text-red-600">{error}</p>;
-  }
+  if (loading) return <p className="text-center text-gray-600">Loading...</p>;
+  if (error) return <p className="text-center text-red-600">{error}</p>;
 
   return (
     <section className="w-full h-screen flex flex-col mt-32 px-8">
@@ -133,11 +145,42 @@ const ProductPage = () => {
         </button>
       </div>
 
+      <div className="grid xl:grid-cols-4 md:grid-cols-2 justify-center items-center gap-4 p-2 w-full">
+        <input
+          type="number"
+          className="p-2 border border-gray-300 rounded-md"
+          placeholder="Min Price"
+          value={minPrice === "" ? "" : minPrice}
+          onChange={(e) => setMinPrice(Number(e.target.value) || "")}
+        />
+        <input
+          type="number"
+          className="p-2 border border-gray-300 rounded-md"
+          placeholder="Max Price"
+          value={maxPrice === "" ? "" : maxPrice}
+          onChange={(e) => setMaxPrice(Number(e.target.value) || "")}
+        />
+        <input
+          type="number"
+          className="p-2 border border-gray-300 rounded-md"
+          placeholder="Min Stock"
+          value={minStockLevel === "" ? "" : minStockLevel}
+          onChange={(e) => setMinStockLevel(Number(e.target.value) || "")}
+        />
+        <input
+          type="number"
+          className="p-2 border border-gray-300 rounded-md"
+          placeholder="Max Stock"
+          value={maxStockLevel === "" ? "" : maxStockLevel}
+          onChange={(e) => setMaxStockLevel(Number(e.target.value) || "")}
+        />
+      </div>
+
       {/* Search for products by name */}
       <div className="flex justify-center items-center gap-2 p-2 w-full">
         <input
           type="text"
-          className="p-2 border border-gray-300 rounded-md w-2/3"
+          className="p-2 border border-gray-300 rounded-md w-full"
           placeholder="Search Products"
           value={searchQuery}
           onChange={handleSearch}
@@ -191,7 +234,7 @@ const ProductPage = () => {
       {isCreateModalOpen && formData && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
           <div className="bg-white p-6 rounded-md shadow-lg w-2/3">
-            <h2 className="text-xl font-semibold mb-4">Create New Product</h2>
+            <h2 className="text-xl font-semibold mb-4">Create Product</h2>
             <form onSubmit={handleSubmitCreate}>
               {["name", "description", "price", "stockLevel", "image", "shopId"].map((field) => (
                 <div className="mb-4" key={field}>
@@ -218,7 +261,7 @@ const ProductPage = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-green-500 text-white rounded-md"
+                  className="px-4 py-2 bg-emerald-500 text-white rounded-md"
                 >
                   Create
                 </button>

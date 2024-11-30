@@ -24,11 +24,11 @@ const Analytics = () => {
   useEffect(() => {
     if (productData.length > 0) {
       const transformedData = productData.map((product) => ({
-        id: parseInt(product.id), // Convert the ID to a number if necessary
+        id: parseInt(product.id),
         name: product.name,
         description: product.description,
         price: product.price,
-        status: product.stockLevel > 0 ? "Active" : "Inactive", // Active if stockLevel > 0
+        status: product.stockLevel > 0 ? "Active" : "Inactive", 
       }));
       setTableData(transformedData);
     }
