@@ -3,7 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 // Define the types
 interface Shop {
-  id: string; // Updated to string
+  id: string; // Ensure ID is a string
   name: string;
   description: string;
   logo: string;
@@ -100,6 +100,22 @@ export const ShopProvider = ({ children }: { children: React.ReactNode }) => {
   const deleteShop = async (id: string) => {
     setLoading(true);
     try {
+      // Step 1: Check for products associated with the shop
+      const productResponse = await fetch(`http://localhost:5000/products?shopId=${id}`);
+      if (!productResponse.ok) {
+        throw new Error("Failed to check associated products");
+      }
+      const products = await productResponse.json();
+
+      // Step 2: If products exist, alert the user and exit the function
+      if (products.length > 0) {
+        alert(
+          `Cannot delete shop. It has ${products.length} associated products. Please transfer or delete the products before deleting the shop.`
+        );
+        return;
+      }
+
+      // Step 3: Proceed with shop deletion if no products are associated
       const response = await fetch(`http://localhost:5000/shops/${id}`, {
         method: "DELETE",
       });

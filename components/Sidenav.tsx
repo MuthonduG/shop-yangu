@@ -10,21 +10,22 @@ import { HiOutlineLogout } from "react-icons/hi";
 // Side nav hyperlinks elements
 type sidenavElems = {
   name: string,
-  icon: JSX.Element
+  icon: JSX.Element,
+  hyperLink: string
 }
 
 const sidenavElements: sidenavElems[] = [
-  {name: 'Dashboard', icon: <MdDashboard />},
-  {name: 'Shops', icon: <BsShop />},
-  {name: 'Products', icon: <TbShoppingBagHeart />},
-]
+  { name: 'Dashboard', icon: <MdDashboard />, hyperLink: "/Dashboard" },
+  { name: 'Shops', icon: <BsShop />, hyperLink: "/Shop" },
+  { name: 'Products', icon: <TbShoppingBagHeart />, hyperLink: "/Product" },
+];
 
-// user settings elements
 const userSettingsElems: sidenavElems[] = [
-  {name: 'Profile', icon: <FaRegUserCircle />},
-  {name: 'Settings', icon: <IoSettingsOutline />},
-  {name: 'Logout', icon: <HiOutlineLogout />},
-]
+  { name: 'Profile', icon: <FaRegUserCircle />, hyperLink: "#" },
+  { name: 'Settings', icon: <IoSettingsOutline />, hyperLink: "#" },
+  { name: 'Logout', icon: <HiOutlineLogout />, hyperLink: "#" },
+];
+
 
 const Sidenav = () => {
   return (
@@ -37,7 +38,7 @@ const Sidenav = () => {
                   return (
                     <Link
                         key={navLink.name}
-                        href="#"
+                        href={navLink.hyperLink}
                         className="flex items-center gap-4 w-full p-6 hover:bg-gray-800 rounded-md transition ease-in-out delay-150 text-slate-200"
                     >
                         <span className="text-lg font-semibold">{navLink.icon}</span>
@@ -58,7 +59,7 @@ const Sidenav = () => {
                   return (
                     <Link
                         key={settingItem.name}
-                        href="#"
+                        href={settingItem.hyperLink}
                         className="flex items-center gap-4 w-full p-6 hover:bg-gray-800 rounded-md transition ease-in-out delay-150 text-slate-200"
                     >
                         <span className="text-lg font-semibold">{settingItem.icon}</span>
