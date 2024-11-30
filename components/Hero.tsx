@@ -6,7 +6,7 @@ import { FcCalendar } from "react-icons/fc";
 const Hero = () => {
   return (
     <section className='p-2'>
-      <div className="grid xl:grid-cols-2 md:grid-cols-2 justify-center items-center p-4 gap-5">
+      <div className="grid xl:grid-cols-2 md:grid-cols-1 justify-center items-center p-4 gap-5">
           <article className='shadow-md rounded-lg bg-white border border-gray-300 flex items-center justify-center p-5 gap-8'>
             <div className="flex flex-col justify-center items-center">
               <div className="flex flex-col justify-center items-center gap-2">

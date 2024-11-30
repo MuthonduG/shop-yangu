@@ -80,7 +80,7 @@ const Analytics = () => {
 
   return (
     <section className="p-2">
-      <div className="grid xl:grid-cols-2 md:grid-cols-2 justify-center items-center p-4 gap-5">
+      <div className="grid xl:grid-cols-2 md:grid-cols-1 justify-center items-center p-4 gap-5">
         {/* Chart Component */}
         <article className="shadow-md rounded-lg bg-white border border-gray-300 flex items-center justify-center p-5">
           <Chartcomponent />

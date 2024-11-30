@@ -89,7 +89,7 @@ const ChartComponent: React.FC = () => {
   }, [productData]); // Re-run whenever the product data changes
 
   return (
-    <div style={{ width: "400px", height: "400px" }}>
+    <div className="w-[20rem] h-auto">
       <canvas ref={chartRef}></canvas> {/* Reference to the canvas element */}
     </div>
   );
