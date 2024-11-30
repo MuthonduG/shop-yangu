@@ -1,0 +1,30 @@
+{
+  "shops": [
+    {
+      "id": "1",
+      "name": "Shop One",
+      "description": "A cool shop selling cool stuff",
+      "logo": "https://via.placeholder.com/150"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Product One",
+      "price": 20,
+      "stockLevel": 10,
+      "description": "Description of Product One",
+      "shopId": 1,
+      "image": "https://via.placeholder.com/150"
+    },
+    {
+      "id": "2",
+      "name": "Product Two",
+      "price": 50,
+      "stockLevel": 5,
+      "description": "Description of Product Two",
+      "shopId": 2,
+      "image": "https://via.placeholder.com/150"
+    }
+  ]
+}

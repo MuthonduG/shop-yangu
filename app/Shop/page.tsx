@@ -14,7 +14,7 @@ type Shop = {
 };
 
 const ShopPage = () => {
-  const { shopData, loading, error } = useShopContext();
+  const { shopData, loading, error, deleteShop } = useShopContext();  // Destructure deleteShop from context
 
   // Handle edit action
   const handleEdit = (shop: Shop) => {
@@ -24,8 +24,9 @@ const ShopPage = () => {
 
   // Handle delete action
   const handleDelete = (shop: Shop) => {
-    console.log("Delete clicked for:", shop);
-    // Implement delete logic, for example, call the delete function from context
+    if (window.confirm(`Are you sure you want to delete ${shop.name}?`)) {
+      deleteShop(shop.id);  // Call the deleteShop method from context
+    }
   };
 
   // Define table columns, including actions column
@@ -55,7 +56,7 @@ const ShopPage = () => {
           </button>
           {/* Delete Button */}
           <button
-            onClick={() => handleDelete(row)}
+            onClick={() => handleDelete(row)}  // Call handleDelete on click
             className="text-red-500 hover:text-red-700"
             title="Delete"
           >
