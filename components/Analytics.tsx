@@ -34,6 +34,9 @@ const Analytics = () => {
     }
   }, [productData]);
 
+  // Limit the displayed data to a maximum of six products
+  const limitedTableData = tableData.slice(0, 6);
+
   // Table columns
   const tableColumns: { key: keyof TableRow; header: string }[] = [
     { key: "name", header: "Product Name" },
@@ -56,11 +59,11 @@ const Analytics = () => {
         <article className="shadow-md rounded-lg bg-white border border-gray-300 flex flex-col items-center justify-center p-5">
           <div className="p-3 flex justify-between items-center w-full">
             <span className="text-left font-serif text-xl">Available Products</span>
-            <Link href='/Product'>
+            <Link href="/Product">
               <MdDoubleArrow className="text-right" />
             </Link>
           </div>
-          <Tablecomponent columns={tableColumns} data={tableData} />
+          <Tablecomponent columns={tableColumns} data={limitedTableData} />
         </article>
       </div>
     </section>
