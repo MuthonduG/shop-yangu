@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import UserProfile from "@/public/user.png";
+import UserProfile from "@/public/assets/user.png";
 import { FaOpencart } from "react-icons/fa6";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoSettingsOutline } from "react-icons/io5";

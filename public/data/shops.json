@@ -1,0 +1,39 @@
+[
+    {
+      "id": 1,
+      "name": "Tech Haven",
+      "description": "Your go-to store for the latest gadgets.",
+      "logo": "https://example.com/logos/tech-haven.png"
+    },
+    {
+      "id": 2,
+      "name": "Fashion Central",
+      "description": "Trendy apparel for all seasons.",
+      "logo": "https://example.com/logos/fashion-central.png"
+    },
+    {
+      "id": 3,
+      "name": "Book Nook",
+      "description": "A cozy collection of books for avid readers.",
+      "logo": "https://example.com/logos/book-nook.png"
+    },
+    {
+      "id": 4,
+      "name": "Health Essentials",
+      "description": "All your health and wellness needs.",
+      "logo": "https://example.com/logos/health-essentials.png"
+    },
+    {
+      "id": 5,
+      "name": "Kitchen Kings",
+      "description": "Premium kitchenware for home chefs.",
+      "logo": "https://example.com/logos/kitchen-kings.png"
+    },
+    {
+      "id": 6,
+      "name": "Outdoor Adventures",
+      "description": "Gear up for your next adventure.",
+      "logo": "https://example.com/logos/outdoor-adventures.png"
+    }
+]
+  
