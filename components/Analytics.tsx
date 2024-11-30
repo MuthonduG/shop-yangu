@@ -1,82 +1,49 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Chartcomponent from "@/components/Chartcomponent";
 import Tablecomponent from "@/components/Tablecomponent";
 import { MdDoubleArrow } from "react-icons/md";
+import { useProductContext } from "@/components/ProductData/ProductContext";
+import Link from "next/link";
 
 type TableRow = {
   id: number;
   name: string;
-  email: string;
+  description: string;
+  price: number;
   status: string;
-  joined: string;
 };
 
 const Analytics = () => {
-  const tableData: TableRow[] = [
-    {
-      id: 1,
-      name: "Alice Johnson",
-      email: "alice.johnson@example.com",
-      status: "Active",
-      joined: "2023-11-01",
-    },
-    {
-      id: 2,
-      name: "Bob Smith",
-      email: "bob.smith@example.com",
-      status: "Inactive",
-      joined: "2023-10-15",
-    },
-    {
-      id: 3,
-      name: "Charlie Brown",
-      email: "charlie.brown@example.com",
-      status: "Active",
-      joined: "2023-09-22",
-    },
-    {
-      id: 4,
-      name: "Diana Prince",
-      email: "diana.prince@example.com",
-      status: "Pending",
-      joined: "2023-11-20",
-    },
-    {
-      id: 5,
-      name: "Alice Johnson",
-      email: "alice.johnson@example.com",
-      status: "Active",
-      joined: "2023-11-01",
-    },
-    {
-      id: 6,
-      name: "Bob Smith",
-      email: "bob.smith@example.com",
-      status: "Inactive",
-      joined: "2023-10-15",
-    },
-    {
-      id: 7,
-      name: "Charlie Brown",
-      email: "charlie.brown@example.com",
-      status: "Active",
-      joined: "2023-09-22",
-    },
-    {
-      id: 8,
-      name: "Diana Prince",
-      email: "diana.prince@example.com",
-      status: "Pending",
-      joined: "2023-11-20",
+  // Fetching product data from the context
+  const { productData, loading, error } = useProductContext();
+
+  // Prepare the table data by transforming the fetched product data
+  const [tableData, setTableData] = useState<TableRow[]>([]);
+
+  useEffect(() => {
+    if (productData.length > 0) {
+      const transformedData = productData.map((product) => ({
+        id: parseInt(product.id), // Convert the ID to a number if necessary
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        status: product.stockLevel > 0 ? "Active" : "Inactive", // Active if stockLevel > 0
+      }));
+      setTableData(transformedData);
     }
+  }, [productData]);
+
+  // Table columns
+  const tableColumns: { key: keyof TableRow; header: string }[] = [
+    { key: "name", header: "Product Name" },
+    { key: "description", header: "Description" },
+    { key: "price", header: "Price" },
+    { key: "status", header: "Status" },
   ];
 
-  const tableColumns: { key: keyof TableRow; header: string }[] = [
-    { key: "name", header: "Name" },
-    { key: "email", header: "Email" },
-    { key: "status", header: "Status" },
-    { key: "joined", header: "Joined Date" },
-  ];
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <section className="p-2">
@@ -87,9 +54,11 @@ const Analytics = () => {
         </article>
         {/* Table Component */}
         <article className="shadow-md rounded-lg bg-white border border-gray-300 flex flex-col items-center justify-center p-5">
-          <div className="p-3 flex justify-between items-cente w-full">
+          <div className="p-3 flex justify-between items-center w-full">
             <span className="text-left font-serif text-xl">Available Products</span>
-            <MdDoubleArrow className="text-right" />
+            <Link href='/Product'>
+              <MdDoubleArrow className="text-right" />
+            </Link>
           </div>
           <Tablecomponent columns={tableColumns} data={tableData} />
         </article>
