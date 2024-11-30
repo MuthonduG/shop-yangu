@@ -147,14 +147,82 @@ const ProductPage = () => {
       {/* Edit Modal */}
       {isEditModalOpen && formData && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
-          {/* Modal content */}
+          <div className="bg-white p-6 rounded-md shadow-lg w-2/3">
+            <h2 className="text-xl font-semibold mb-4">Edit Product</h2>
+            <form onSubmit={handleSubmitEdit}>
+              {["name", "description", "price", "stockLevel", "image", "shopId"].map((field) => (
+                <div className="mb-4" key={field}>
+                  <label htmlFor={field} className="block capitalize">
+                    {field}
+                  </label>
+                  <input
+                    type={field === "price" || field === "stockLevel" ? "number" : "text"}
+                    id={field}
+                    name={field}
+                    value={formData[field as keyof Product]}
+                    onChange={handleChange}
+                    className="w-full p-2 border border-gray-300 rounded-md"
+                  />
+                </div>
+              ))}
+              <div className="flex justify-end gap-4">
+                <button
+                  type="button"
+                  onClick={() => setIsEditModalOpen(false)}
+                  className="px-4 py-2 bg-gray-500 text-white rounded-md"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-blue-500 text-white rounded-md"
+                >
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
 
       {/* Create Modal */}
       {isCreateModalOpen && formData && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
-          {/* Modal content */}
+          <div className="bg-white p-6 rounded-md shadow-lg w-2/3">
+            <h2 className="text-xl font-semibold mb-4">Create New Product</h2>
+            <form onSubmit={handleSubmitCreate}>
+              {["name", "description", "price", "stockLevel", "image", "shopId"].map((field) => (
+                <div className="mb-4" key={field}>
+                  <label htmlFor={field} className="block capitalize">
+                    {field}
+                  </label>
+                  <input
+                    type={field === "price" || field === "stockLevel" ? "number" : "text"}
+                    id={field}
+                    name={field}
+                    value={formData[field as keyof Product]}
+                    onChange={handleChange}
+                    className="w-full p-2 border border-gray-300 rounded-md"
+                  />
+                </div>
+              ))}
+              <div className="flex justify-end gap-4">
+                <button
+                  type="button"
+                  onClick={() => setIsCreateModalOpen(false)}
+                  className="px-4 py-2 bg-gray-500 text-white rounded-md"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-green-500 text-white rounded-md"
+                >
+                  Create
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </section>
