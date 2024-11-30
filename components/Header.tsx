@@ -38,7 +38,7 @@ const Header = () => {
                 </div>
                 <div className="leading-10 p-6 flex justify-center items-center">
                     <p>
-                        Currently, shop yangu has branches scattered within Nairobi, Kisumu and Nakuru
+                        Total number shops within shop yangu chain.
                     </p>
                 </div>
                 <div className="flex justify-center items-center text-2xl font-semibold">
@@ -53,7 +53,7 @@ const Header = () => {
                 </div>
                 <div className="leading-10 p-6 flex justify-center items-center">
                     <p>
-                        This is based on the sum of the total price multiplied by the product price across all products.
+                        Total price of all products across all shops.
                     </p>
                 </div>
                 <div className="flex justify-center items-center text-2xl font-semibold">
@@ -68,7 +68,7 @@ const Header = () => {
                 </div>
                 <div className="leading-10 p-6 flex justify-center items-center">
                     <p>
-                        Currently, shop yangu has branches scattered within Nairobi, Kisumu and Nakuru
+                        Total number of all products across all shops.
                     </p>
                 </div>
                 <div className="flex justify-center items-center text-2xl font-semibold">
