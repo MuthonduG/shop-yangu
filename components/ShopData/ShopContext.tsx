@@ -3,7 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 // Define the types
 interface Shop {
-  id: string; // Ensure ID is a string
+  id: string; 
   name: string;
   description: string;
   logo: string;
@@ -23,7 +23,7 @@ const ShopContext = createContext<ShopContextType | undefined>(undefined);
 
 // Provider component
 export const ShopProvider = ({ children }: { children: React.ReactNode }) => {
-  const [shopData, setShopData] = useState<Shop[]>([]); // Initialize as empty
+  const [shopData, setShopData] = useState<Shop[]>([]); 
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -51,7 +51,7 @@ export const ShopProvider = ({ children }: { children: React.ReactNode }) => {
   const createShop = async (newShop: Shop) => {
     setLoading(true);
     try {
-      const shopWithStringId = { ...newShop, id: newShop.id.toString() }; // Ensure ID is a string
+      const shopWithStringId = { ...newShop, id: newShop.id.toString() }; 
       const response = await fetch("http://localhost:5000/shops", {
         method: "POST",
         headers: {
@@ -80,7 +80,7 @@ export const ShopProvider = ({ children }: { children: React.ReactNode }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...updatedShop, id: id.toString() }), // Ensure ID is a string
+        body: JSON.stringify({ ...updatedShop, id: id.toString() }), 
       });
       if (!response.ok) {
         throw new Error("Failed to update shop");

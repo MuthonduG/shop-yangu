@@ -1,19 +1,21 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import { useProductContext } from "@/components/ProductData/ProductContext"; // Assuming you have this context for product data
+import { useProductContext } from "@/components/ProductData/ProductContext"; 
 import Chart, { ChartData, ChartOptions } from "chart.js/auto";
 
 const ChartComponent: React.FC = () => {
-  const chartRef = useRef<HTMLCanvasElement | null>(null); // Reference to the canvas element
-  const chartInstanceRef = useRef<Chart<"pie", number[], string> | null>(null); // Reference to the Chart instance
+  const chartRef = useRef<HTMLCanvasElement | null>(null); 
+  const chartInstanceRef = useRef<Chart<"pie", number[], string> | null>(null); 
 
-  const { productData } = useProductContext(); // Getting product data from context
+  const { productData } = useProductContext();
 
   useEffect(() => {
-    if (!chartRef.current || !productData || productData.length === 0) return; // Ensure the canvas element and product data are available
+    // Ensure the canvas element and product data are available
+    if (!chartRef.current || !productData || productData.length === 0) return; 
 
     const ctx = chartRef.current.getContext("2d");
-    if (!ctx) return; // Ensure the 2D context is available
+    // Ensure the 2D context is available
+    if (!ctx) return; 
 
     // Destroy the previous chart instance if it exists
     if (chartInstanceRef.current) {
@@ -28,8 +30,8 @@ const ChartComponent: React.FC = () => {
     });
 
     // Create the chart labels and data
-    const labels = Object.keys(shopProductCount); // Shops (based on shopId)
-    const dataValues = Object.values(shopProductCount); // Number of products for each shop
+    const labels = Object.keys(shopProductCount); 
+    const dataValues = Object.values(shopProductCount); 
 
     // Define the chart data
     const chartData: ChartData<"pie", number[], string> = {
@@ -37,7 +39,7 @@ const ChartComponent: React.FC = () => {
       datasets: [
         {
           label: "Products per Shop",
-          data: dataValues, // Data points representing the number of products per shop
+          data: dataValues, 
           backgroundColor: [
             "rgba(255, 99, 132, 0.6)",
             "rgba(54, 162, 235, 0.6)",
@@ -83,14 +85,16 @@ const ChartComponent: React.FC = () => {
     return () => {
       if (chartInstanceRef.current) {
         chartInstanceRef.current.destroy();
-        chartInstanceRef.current = null; // Reset the reference
+        chartInstanceRef.current = null; 
       }
     };
-  }, [productData]); // Re-run whenever the product data changes
+    
+    // Re-run whenever the product data changes
+  }, [productData]); 
 
   return (
     <div className="w-[20rem] h-auto">
-      <canvas ref={chartRef}></canvas> {/* Reference to the canvas element */}
+      <canvas ref={chartRef}></canvas>
     </div>
   );
 };
