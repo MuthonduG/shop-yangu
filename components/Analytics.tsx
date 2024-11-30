@@ -1,6 +1,7 @@
 import React from "react";
 import Chartcomponent from "@/components/Chartcomponent";
 import Tablecomponent from "@/components/Tablecomponent";
+import { MdDoubleArrow } from "react-icons/md";
 
 type TableRow = {
   id: number;
@@ -67,20 +68,6 @@ const Analytics = () => {
       email: "diana.prince@example.com",
       status: "Pending",
       joined: "2023-11-20",
-    },
-    {
-      id: 9,
-      name: "Alice Johnson",
-      email: "alice.johnson@example.com",
-      status: "Active",
-      joined: "2023-11-01",
-    },
-    {
-      id: 10,
-      name: "Bob Smith",
-      email: "bob.smith@example.com",
-      status: "Inactive",
-      joined: "2023-10-15",
     }
   ];
 
@@ -99,7 +86,11 @@ const Analytics = () => {
           <Chartcomponent />
         </article>
         {/* Table Component */}
-        <article className="shadow-md rounded-lg bg-white border border-gray-300 flex items-center justify-center p-5">
+        <article className="shadow-md rounded-lg bg-white border border-gray-300 flex flex-col items-center justify-center p-5">
+          <div className="p-3 flex justify-between items-cente w-full">
+            <span className="text-left font-serif text-xl">Available Products</span>
+            <MdDoubleArrow className="text-right" />
+          </div>
           <Tablecomponent columns={tableColumns} data={tableData} />
         </article>
       </div>

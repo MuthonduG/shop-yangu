@@ -1,0 +1,138 @@
+[
+    {
+      "id": 1,
+      "shopId": 1,
+      "name": "Wireless Headphones",
+      "price": 120.0,
+      "stock": 15,
+      "description": "High-quality wireless headphones with noise cancellation.",
+      "image": "https://example.com/products/headphones.png"
+    },
+    {
+      "id": 2,
+      "shopId": 1,
+      "name": "Gaming Laptop",
+      "price": 1500.0,
+      "stock": 5,
+      "description": "Powerful gaming laptop with cutting-edge graphics.",
+      "image": "https://example.com/products/gaming-laptop.png"
+    },
+    {
+      "id": 3,
+      "shopId": 2,
+      "name": "Men's Jacket",
+      "price": 80.0,
+      "stock": 12,
+      "description": "Stylish and warm winter jacket.",
+      "image": "https://example.com/products/mens-jacket.png"
+    },
+    {
+      "id": 4,
+      "shopId": 2,
+      "name": "Women's Dress",
+      "price": 60.0,
+      "stock": 20,
+      "description": "Elegant evening dress for formal occasions.",
+      "image": "https://example.com/products/womens-dress.png"
+    },
+    {
+      "id": 5,
+      "shopId": 3,
+      "name": "Mystery Novel",
+      "price": 15.0,
+      "stock": 50,
+      "description": "A thrilling mystery novel that keeps you guessing.",
+      "image": "https://example.com/products/mystery-novel.png"
+    },
+    {
+      "id": 6,
+      "shopId": 3,
+      "name": "Cookbook",
+      "price": 25.0,
+      "stock": 30,
+      "description": "A collection of delicious recipes for every occasion.",
+      "image": "https://example.com/products/cookbook.png"
+    },
+    {
+      "id": 7,
+      "shopId": 4,
+      "name": "Vitamin C Tablets",
+      "price": 10.0,
+      "stock": 25,
+      "description": "Boost your immunity with these Vitamin C tablets.",
+      "image": "https://example.com/products/vitamin-c.png"
+    },
+    {
+      "id": 8,
+      "shopId": 4,
+      "name": "Protein Powder",
+      "price": 50.0,
+      "stock": 10,
+      "description": "High-quality protein powder for fitness enthusiasts.",
+      "image": "https://example.com/products/protein-powder.png"
+    },
+    {
+      "id": 9,
+      "shopId": 5,
+      "name": "Non-Stick Pan",
+      "price": 40.0,
+      "stock": 18,
+      "description": "Durable and easy-to-clean non-stick frying pan.",
+      "image": "https://example.com/products/non-stick-pan.png"
+    },
+    {
+      "id": 10,
+      "shopId": 5,
+      "name": "Chef's Knife",
+      "price": 60.0,
+      "stock": 8,
+      "description": "Professional-grade chef's knife for precise cutting.",
+      "image": "https://example.com/products/chefs-knife.png"
+    },
+    {
+      "id": 11,
+      "shopId": 6,
+      "name": "Hiking Backpack",
+      "price": 90.0,
+      "stock": 7,
+      "description": "Spacious and durable backpack for hiking trips.",
+      "image": "https://example.com/products/hiking-backpack.png"
+    },
+    {
+      "id": 12,
+      "shopId": 6,
+      "name": "Camping Tent",
+      "price": 150.0,
+      "stock": 4,
+      "description": "Lightweight and waterproof tent for outdoor adventures.",
+      "image": "https://example.com/products/camping-tent.png"
+    },
+    {
+      "id": 13,
+      "shopId": 6,
+      "name": "Sleeping Bag",
+      "price": 70.0,
+      "stock": 10,
+      "description": "Warm and comfortable sleeping bag for camping.",
+      "image": "https://example.com/products/sleeping-bag.png"
+    },
+    {
+      "id": 14,
+      "shopId": 3,
+      "name": "Self-Help Book",
+      "price": 20.0,
+      "stock": 40,
+      "description": "Motivational book to inspire personal growth.",
+      "image": "https://example.com/products/self-help-book.png"
+    },
+    {
+      "id": 15,
+      "shopId": 2,
+      "name": "Sports Shoes",
+      "price": 100.0,
+      "stock": 22,
+      "description": "Comfortable and stylish sports shoes for all activities.",
+      "image": "https://example.com/products/sports-shoes.png"
+    }
+]
+  
